@@ -24,10 +24,11 @@ use App\Http\Controllers\SessionController;
   Route::post('/login-admin-post', [AuthAdminController::class, 'login'])->name('admin.admin-login.submit')->middleware('guest');
 
   // LKS
-  Route::get('/profile', [LKSController::class, 'show'])->middleware('auth');
+  Route::get('/profile', [LKSController::class, 'show'])->name('profile')->middleware('auth');
   Route::get('/uploadData', [UploadDataController::class, 'index']);
-  Route::get('/editProfile/{id}', [EditProfilController::class, 'index']);
+  Route::get('/form-lks', [LKSController::class, 'edit'])->middleware('auth');
   Route::post('/updateProfile/{id}', [EditProfilController::class, 'update'])->name('updateProfile');
+  Route::post('/form-data-lks', [LKSController::class, 'update']);
 
   // Admin
   Route::get('/admin', [HomeAdminController::class, 'index']);

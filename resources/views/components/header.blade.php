@@ -27,14 +27,14 @@
   </a>
 
   {{--  Links--}}
-  <ul class="flex gap-8 relative items-center">
+  <ul class="flex gap-8 items-center">
     <li>
       <a href="/">Home</a>
     </li>
     @if(Auth::user() && Auth::user()->role == 'lks')
-      <li>
+      <li class="relative">
         <button @click="openProfile = !openProfile; openUser = false">Profile <i class="uil uil-angle-down"></i></button>
-        <ul x-show="openProfile" class="absolute rounded-lg text-black top-[70px] right-40 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
+        <ul x-show="openProfile" class="absolute z-50 rounded-lg text-black shadow-md flex flex-col gap-2 py-4 px-4 bg-white w-40 top-10 right-0">
           <li>
             <a href="/profile">Profile LKS</a>
           </li>
@@ -48,9 +48,9 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li class="relative">
         <button @click="openUser = !openUser; openProfile = false" class="flex items-center gap-2 rounded-full bg-white text-black py-2 px-4 font-semibold duration-150 hover:text-gray-700">{{ Auth::user()->name }} <img src="img/icon/user-icon.png" alt=""></button>
-        <ul x-show="openUser" class="absolute rounded-lg text-black top-[70px] right-8 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
+        <ul x-show="openUser" class="absolute z-50 rounded-lg text-black top-14 right-0 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
           <li class="flex flex-col gap-4">
             <div class="flex gap-2 items-center">
               <img src="img/icon/user-icon.png" alt="">
@@ -77,7 +77,7 @@
       </li>
       <li>
         <button @click="openUser = !openUser" class="rounded-full flex items-center gap-2 bg-white text-black py-2 px-4 font-semibold duration-150 hover:text-gray-700">{{ Auth::user()->name }} <img src="img/icon/user-icon.png" alt=""></button>
-        <ul x-show="openUser" class="absolute rounded-lg text-black top-[70px] right-0 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
+        <ul x-show="openUser" class="absolute z-50 rounded-lg text-black top-[70px] right-0 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
           <li class="flex flex-col gap-4">
             <div class="flex gap-2 items-center">
               <img src="img/icon/user-icon.png" alt="">
@@ -98,7 +98,7 @@
     @if(!Auth::user())
       <li>
         <button @click="openLogin = !openLogin; openProfile = false">Login <i class="uil uil-angle-down"></i></button>
-        <ul x-show="openLogin" class="absolute text-black top-16 -right-4 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
+        <ul x-show="openLogin" class="absolute z-50 text-black top-16 -right-4 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
           <li>
             <a href="/login-admin">Login Admin</a>
           </li>

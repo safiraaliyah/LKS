@@ -19,24 +19,24 @@
             <div class="max-w-full mx-auto lg:col-span-full">
                 <h2 class="text-left text-3xl font-extrabold tracking-tight text-gray-900 mb-8">Profil LKS</h2>
             </div>
-{{--            @foreach ($profils as $profil)--}}
-{{--            <a href="{{ url('/profil/' . $profil->id) }}" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow mx-auto">--}}
-{{--                <img class="rounded-t-lg w-full" src="{{ Storage::url($profil->image) }}" alt="{{ $profil->nama }}" />--}}
-{{--                <div class="p-5 text-center">--}}
-{{--                    <div class="flex justify-center mb-2">--}}
-{{--                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 text-black" viewBox="0 0 16 16">--}}
-{{--                            <path d="M16 8c0 3.866-3.582 7-8 7s-8-3.134-8-7 3.582-7 8-7 8 3.134 8 7zm-8-5a5 5 0 1 0 0 10A5 5 0 0 0 8 3z" />--}}
-{{--                            <path d="M8 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />--}}
-{{--                            <path d="M8 4.5a.5.5 0 0 0-1 0v3a.5.5 0 0 0 1 0v-3z" />--}}
-{{--                        </svg>--}}
-{{--                    </div>--}}
-{{--                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $profil->nama }}</h5>--}}
-{{--                    <p class="mb-3 font-normal text-gray-700">{{ $profil->alamat }}</p>--}}
-{{--                    <hr class="my-4 border-gray-500">--}}
-{{--                    <p class="font-normal text-gray-700">Kontak Pengurus: {{ $profil->kontak }}</p>--}}
-{{--                </div>--}}
-{{--            </a>--}}
-{{--            @endforeach--}}
+            @foreach ($profiles as $profile)
+            <a href="{{ url('/profil/' . $profile->id) }}" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow mx-auto hover:scale-105">
+                <img class="rounded-t-lg w-full" src="img/lks/{{ $profile->foto_lks }}" alt="{{ $profile->nama_lks }}" />
+                <div class="p-5 text-center">
+                    <div class="flex justify-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 text-black" viewBox="0 0 16 16">
+                            <path d="M16 8c0 3.866-3.582 7-8 7s-8-3.134-8-7 3.582-7 8-7 8 3.134 8 7zm-8-5a5 5 0 1 0 0 10A5 5 0 0 0 8 3z" />
+                            <path d="M8 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                            <path d="M8 4.5a.5.5 0 0 0-1 0v3a.5.5 0 0 0 1 0v-3z" />
+                        </svg>
+                    </div>
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $profile->nama_lks }}</h5>
+                    <p class="mb-3 font-normal text-gray-700">{{ $profile->alamat_lks }}</p>
+                    <hr class="my-4 border-gray-500">
+                    <p class="font-normal text-gray-700">Kontak Pengurus: {{ $profile->kontak_pengurus }}</p>
+                </div>
+            </a>
+            @endforeach
         </div>
     </div>
 

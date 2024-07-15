@@ -48,7 +48,7 @@
 
     <!-- Tombol Edit Profil dan Kembali -->
     <div class="flex justify-center mt-6 space-x-4">
-        <a href="{{ url('/editProfil/' . $profile->id) }}"
+        <a href="{{ url('/form-lks') }}"
            class="bg-[#08A78B] hover:bg-[#114138] text-white font-bold py-2 px-4 rounded">
             Edit Profile
         </a>
