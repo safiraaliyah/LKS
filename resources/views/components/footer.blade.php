@@ -1,5 +1,3 @@
-
-
 <footer class="bg-[#08A78B] rounded-lg shadow m-4 ">
     <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
       <span class="text-sm text-white sm:text-center ">© 2024 <a href="https://flowbite.com/" class="hover:underline">Lembaga Kesejahteraan Sosial.</a>
@@ -20,3 +18,5 @@
     </ul>
     </div>
 </footer>
+</body>
+</html>

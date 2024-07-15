@@ -12,21 +12,21 @@ class AuthController extends Controller
         return view('admin.admin-login');
     }
 
-    public function login(Request $request)
-    {
-        $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
-        ]);
-
-        $credentials = $request->only('username', 'password');
-
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('/login');
-        }
-
-        return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
-        ]);
-    }
+//    public function login(Request $request)
+//    {
+//        $request->validate([
+//            'username' => 'required|string',
+//            'password' => 'required|string',
+//        ]);
+//
+//        $credentials = $request->only('username', 'password');
+//
+//        if (Auth::attempt($credentials)) {
+//            return redirect()->intended('/');
+//        }
+//
+//        return back()->withErrors([
+//            'username' => 'The provided credentials do not match our records.',
+//        ]);
+//    }
 }
