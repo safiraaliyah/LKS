@@ -34,32 +34,41 @@
     @if(Auth::user() && Auth::user()->role == 'lks')
       <li>
         <button @click="openProfile = !openProfile; openUser = false">Profile <i class="uil uil-angle-down"></i></button>
-        <ul x-show="openProfile" class="absolute text-black top-[70px] right-36 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
+        <ul x-show="openProfile" class="absolute rounded-lg text-black top-[70px] right-40 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
           <li>
-            <a href="">Profile LKS</a>
+            <a href="/profile">Profile LKS</a>
           </li>
           <hr>
           <li>
-            <a href="">Form Data LKS</a>
+            <a href="/form-lks">Form Data LKS</a>
           </li>
           <hr>
           <li>
-            <a href="">Form Upload Data</a>
+            <a href="/form-data">Form Upload Data</a>
           </li>
         </ul>
       </li>
       <li>
-        <button @click="openUser = !openUser; openProfile = false" class="rounded-full bg-white text-black py-2 px-4 font-semibold duration-150 hover:text-gray-700">{{ Auth::user()->name }} <i class="uil uil-angle-down"></i></button>
-        <ul x-show="openUser" class="absolute text-black top-[70px] right-16 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
-          <li>
+        <button @click="openUser = !openUser; openProfile = false" class="flex items-center gap-2 rounded-full bg-white text-black py-2 px-4 font-semibold duration-150 hover:text-gray-700">{{ Auth::user()->name }} <img src="img/icon/user-icon.png" alt=""></button>
+        <ul x-show="openUser" class="absolute rounded-lg text-black top-[70px] right-8 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
+          <li class="flex flex-col gap-4">
+            <div class="flex gap-2 items-center">
+              <img src="img/icon/user-icon.png" alt="">
+              {{ Auth::user()->name }}
+            </div>
             <form method="POST" action="{{ route('logout') }}">
               @csrf
-              <button type="submit" class="text-left w-full hover:text-gray-600 duration-150 font-medium">Logout</button>
+              <button type="submit" class="flex items-center gap-2 bg-gray-300 px-8 py-1 border border-black rounded-full text-left w-full hover:text-gray-600 duration-150 font-medium">
+                <img src="img/icon/logout-icon.png" alt="">
+                Logout
+              </button>
             </form>
           </li>
         </ul>
       </li>
+
     @elseif (Auth::user() && Auth::user()->role == 'admin')
+
       <li>
         <a href="/history">History</a>
       </li>
@@ -67,17 +76,25 @@
         <a href="">Management</a>
       </li>
       <li>
-        <button @click="openUser = !openUser" class="rounded-full bg-white text-black py-2 px-4 font-semibold duration-150 hover:text-gray-700">{{ Auth::user()->name }} <i class="uil uil-angle-down"></i></button>
-        <ul x-show="openUser" class="absolute text-black top-[70px] right-0 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
-          <li>
+        <button @click="openUser = !openUser" class="rounded-full flex items-center gap-2 bg-white text-black py-2 px-4 font-semibold duration-150 hover:text-gray-700">{{ Auth::user()->name }} <img src="img/icon/user-icon.png" alt=""></button>
+        <ul x-show="openUser" class="absolute rounded-lg text-black top-[70px] right-0 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
+          <li class="flex flex-col gap-4">
+            <div class="flex gap-2 items-center">
+              <img src="img/icon/user-icon.png" alt="">
+              {{ Auth::user()->name }}
+            </div>
             <form method="POST" action="{{ route('logout') }}">
               @csrf
-              <button type="submit" class="text-left w-full hover:text-gray-600 duration-150 font-medium">Logout</button>
+              <button type="submit" class="flex items-center gap-2 bg-gray-300 px-8 py-1 border border-black rounded-full text-left w-full hover:text-gray-600 duration-150 font-medium">
+                <img src="img/icon/logout-icon.png" alt="">
+                Logout
+              </button>
             </form>
           </li>
         </ul>
       </li>
     @endif
+
     @if(!Auth::user())
       <li>
         <button @click="openLogin = !openLogin; openProfile = false">Login <i class="uil uil-angle-down"></i></button>
