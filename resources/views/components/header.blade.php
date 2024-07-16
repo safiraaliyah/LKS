@@ -34,7 +34,7 @@
     @if(Auth::user() && Auth::user()->role == 'lks')
       <li class="relative">
         <button @click="openProfile = !openProfile; openUser = false">Profile <i class="uil uil-angle-down"></i></button>
-        <ul x-show="openProfile" class="absolute z-50 rounded-lg text-black shadow-md flex flex-col gap-2 py-4 px-4 bg-white w-40 top-10 right-0">
+        <ul x-show="openProfile" class="absolute text-center z-50 rounded-lg text-black shadow-md flex flex-col gap-2 py-4 px-4 bg-white w-40 top-10 right-0">
           <li>
             <a href="/profile">Profile LKS</a>
           </li>
@@ -96,9 +96,9 @@
     @endif
 
     @if(!Auth::user())
-      <li>
+      <li class="relative">
         <button @click="openLogin = !openLogin; openProfile = false">Login <i class="uil uil-angle-down"></i></button>
-        <ul x-show="openLogin" class="absolute z-50 text-black top-16 -right-4 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
+        <ul x-show="openLogin" class="absolute text-center rounded-lg z-50 text-black top-10 right-0 w-40 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
           <li>
             <a href="/login-admin">Login Admin</a>
           </li>

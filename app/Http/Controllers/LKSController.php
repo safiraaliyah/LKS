@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\LKS;
+use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
 class LKSController extends Controller
 {
@@ -53,15 +53,19 @@ class LKSController extends Controller
 
     // Handle the file upload
     if ($request->hasFile('foto_lks')) {
-      // Delete the old photo if exists
+      // Delete the old photo if it exists
       if ($profile->foto_lks) {
-        Storage::delete('public/img/lks/' . $profile->foto_lks);
+        // Delete the old file from the public directory
+        $oldFilePath = public_path('img/lks/' . $profile->foto_lks);
+        if (file_exists($oldFilePath)) {
+          unlink($oldFilePath);
+        }
       }
 
-      // Store the new photo
+      // Store the new photo in the public directory
       $file = $request->file('foto_lks');
       $filename = time() . '_' . $file->getClientOriginalName();
-      $file->storeAs('public/img/lks', $filename);
+      $file->move(public_path('img/lks/'), $filename);
       $validatedData['foto_lks'] = $filename;
     }
 
@@ -70,5 +74,47 @@ class LKSController extends Controller
 
     // Redirect with a success message
     return redirect()->route('profile')->with('success', 'Profile updated successfully.');
+  }
+
+  public function upload()
+  {
+    return view('lks.form-upload');
+  }
+
+  public function send(Request $request)
+  {
+    $profile = LKS::where('id_user', Auth::id())->first();
+
+    // Validate the form data
+    $validatedData = $request->validate([
+    'periode' => 'required|string|in:Januari,Februari,Maret,April,Mei,Juni,Juli,Agustus,September,Oktober,November,Desember',
+    'laporan' => 'mimes:docx,pdf,xlsx,docs|max:100048',
+    ]);
+
+    // Handle the file upload
+    if ($request->hasFile('laporan')) {
+      // Delete the old file if it exists
+      if ($profile->laporan) {
+        // Delete the old file from the public directory
+        $oldFilePath = public_path('laporan/lks/' . $profile->laporan);
+        if (file_exists($oldFilePath)) {
+          unlink($oldFilePath);
+        }
+      }
+
+      // Store the new photo in the public directory
+      $file = $request->file('laporan');
+      $filename = time() . '_' . $file->getClientOriginalName();
+      $file->move(public_path('laporan/lks/'), $filename);
+      $validatedData['laporan'] = $filename;
+    }
+
+    Report::create([
+      'id_lks'  => $profile->id,
+      'periode' => $request->periode,
+      'laporan' => $validatedData['laporan'],
+    ]);
+
+    return redirect()->route('profile')->with(['success' => 'Data Berhasil Ditambahkan!']);
   }
 }

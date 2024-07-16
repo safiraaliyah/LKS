@@ -24,18 +24,25 @@ use App\Http\Controllers\SessionController;
   Route::post('/login-admin-post', [AuthAdminController::class, 'login'])->name('admin.admin-login.submit')->middleware('guest');
 
   // LKS
-  Route::get('/profile', [LKSController::class, 'show'])->name('profile')->middleware('auth');
-  Route::get('/uploadData', [UploadDataController::class, 'index']);
-  Route::get('/form-lks', [LKSController::class, 'edit'])->middleware('auth');
-  Route::post('/updateProfile/{id}', [EditProfilController::class, 'update'])->name('updateProfile');
-  Route::post('/form-data-lks', [LKSController::class, 'update']);
+  Route::middleware(['auth', 'lks'])->group(function () {
+    Route::get('/profile', [LKSController::class, 'show'])->name('profile');
+    Route::get('/form-lks', [LKSController::class, 'edit']);
+    Route::get('/form-data', [LKSController::class, 'upload']);
+
+    Route::post('/form-data-lks', [LKSController::class, 'update']);
+    Route::post('/send-data-lks', [LKSController::class, 'send']);
+  });
 
   // Admin
-  Route::get('/admin', [HomeAdminController::class, 'index']);
-  Route::get('/history', [HistoriController::class, 'index']);
-  Route::get('/management', [ManagementController::class, 'index']);
+  Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [HomeAdminController::class, 'index']);
+    Route::get('/history', [HistoriController::class, 'index']);
+    Route::get('/management', [ManagementController::class, 'index']);
+  });
 
-  Route::post('/logout', [SessionController::class, 'logout'])->name('logout');
+  Route::middleware(['auth'])->group(function () {
+    Route::post('/logout', [SessionController::class, 'logout'])->name('logout');
+  });
 
   Route::fallback(function () {
     return view('404');
