@@ -24,7 +24,7 @@
   <nav class="bg-[#08A78B] text-white py-4 px-8 md:px-12 flex items-center justify-between relative">
     <!-- Logo -->
     <a href="/">
-      <img src="img/logo_kota.png" alt="logo" class="w-12">
+      <img src="{{ asset('img/logo_kota.png') }}" alt="logo" class="w-12">
     </a>
 
     <!-- Mobile Menu Button -->
@@ -60,6 +60,7 @@
                 <img src="img/icon/user-icon.png" alt="">
                 {{ Auth::user()->name }}
               </div>
+
               <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit" class="flex items-center gap-2 bg-gray-300 px-8 py-1 border border-black rounded-full text-left w-full hover:text-gray-600 duration-150 font-medium">
@@ -75,12 +76,12 @@
         <li><a href="/management">Management</a></li>
         <li class="relative">
           <button @click="openUser = !openUser" class="rounded-full flex items-center gap-2 bg-white text-black py-2 px-4 font-semibold duration-150 hover:text-gray-700">
-            {{ Auth::user()->name }} <img src="img/icon/user-icon.png" alt="">
+            {{ Auth::user()->name }} <img src="{{ asset('img/icon/user-icon.png') }}" alt="">
           </button>
           <ul x-show="openUser" @click.away="openUser = false" class="absolute z-50 rounded-lg text-black top-14 right-0 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
             <li class="flex flex-col gap-4">
               <div class="flex gap-2 items-center">
-                <img src="img/icon/user-icon.png" alt="">
+                <img src="{{ asset('img/icon/user-icon.png') }}" alt="">
                 {{ Auth::user()->name }}
               </div>
               <form method="POST" action="{{ route('logout') }}">

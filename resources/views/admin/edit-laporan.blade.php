@@ -1,4 +1,4 @@
-@include('components.header', ['profile' => 'profil / LKS'])
+@include('components.header', ['Management' => 'Management / LKS'])
 <div class="my-8 max-w-screen-lg mx-auto border px-6 py-8 shadow-xl rounded-xl bg-white">
   <!-- Header -->
   <div class="py-4">
