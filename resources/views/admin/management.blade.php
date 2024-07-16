@@ -34,12 +34,16 @@
                                     <p class="whitespace-no-wrap">{{$l->nama_lks}}</p>
                                 </td>
                                 <td class="px-6 py-4 border-b border-gray-200 bg-white flex">
-                                    <a href="#" class="text-gray-600 hover:text-gray-800 mr-2">
+                                    <a href="/update-lks/{{ base64_encode($l->id) }}" class="text-gray-600 hover:text-gray-800 mr-2">
                                         <i class="uil uil-edit text-xl"></i>
                                     </a>
-                                    <a href="#" class="text-gray-600 hover:text-gray-800">
-                                        <i class="uil uil-trash-alt text-xl"></i>
-                                    </a>
+                                    <form action="{{ route('delete-lks', base64_encode($l->id)) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this report?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-gray-600 hover:text-gray-800">
+                                            <i class="uil uil-trash-alt text-xl"></i>
+                                        </button>
+                                    </form>
                                 </td>
                                 
                             </tr>

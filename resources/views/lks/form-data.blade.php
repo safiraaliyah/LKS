@@ -26,7 +26,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-4">
       <label class="md:text-left pr-4 text-gray-700">Alamat LKS</label>
       <div class="md:col-span-2">
-        <textarea name="alamat_lks" class="w-full p-2 border border-gray-300 rounded-lg" rows="1">{{ $profile->alamat_lks }}</textarea>
+        <textarea name="alamat_lks" class="w-full p-2 border border-gray-300 rounded-lg" rows="3">{{ $profile->alamat_lks }}</textarea>
       </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-4">

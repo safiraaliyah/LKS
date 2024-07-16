@@ -12,7 +12,7 @@
   <!-- Form Section -->
   <div class="my-4 border px-6 py-6 shadow-lg rounded-xl bg-gray-50">
     <!-- Form Upload Laporan -->
-    <form class="flex flex-col gap-4" method="POST" enctype="multipart/form-data" action="/update-data-lks">
+    <form class="flex flex-col gap-4" method="POST" enctype="multipart/form-data" action="/update-laporan">
       @csrf
       <input type="hidden" name="id" value="{{base64_encode($report->id)}}">
       <!-- Periode Selection -->

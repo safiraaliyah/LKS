@@ -41,12 +41,16 @@
   Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [HomeAdminController::class, 'index']);
     Route::get('/history', [HistoryController::class, 'index'])->name('history');
-    Route::get('/management', [ManagementController::class, 'index']);
+    Route::get('/management', [ManagementController::class, 'index'])->name('management');
 
     Route::get('/update-laporan/{id}', [AdminController::class, 'edit_laporan']);
     Route::post('/update-laporan', [AdminController::class, 'update_laporan']);
 
+    Route::get('/update-lks/{id}', [AdminController::class, 'edit_lks']);
+    Route::post('/update-lks', [AdminController::class, 'update_lks']);
+
     Route::delete('/delete-laporan/{id}', [AdminController::class, 'destroy_laporan'])->name('delete-laporan');
+    Route::delete('/delete-lks/{id}', [AdminController::class, 'destroy_lks'])->name('delete-lks');
   });
 
   Route::middleware(['auth'])->group(function () {

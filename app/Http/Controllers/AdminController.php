@@ -45,9 +45,12 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit_lks(string $id)
     {
+      $idDecode = base64_decode($id);
 
+      $lks = LKS::find($idDecode);
+      return view('admin.edit-lks', compact('lks'));
     }
 
     /**
@@ -64,9 +67,50 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update_lks(Request $request)
     {
-        //
+      // Decode the ID
+      $lks = LKS::find($request->id);
+
+      // Validate the form data
+      $validatedData = $request->validate([
+        'foto_lks' => 'nullable|image|mimes:jpg,svg,raw|max:10048',
+        'nama_lks' => 'required|string|max:255',
+        'ketua_lks' => 'required|string|max:255',
+        'alamat_lks' => 'required|string',
+        'nomor_notaris' => 'required|string|max:255',
+        'tanggal_akte_notaris' => 'required|date',
+        'kontrak_awal' => 'required|date',
+        'kontrak_akhir' => 'required|date',
+        'kontak_pengurus' => 'required|string|max:255',
+        'akreditasi_lks' => 'required|string|max:1',
+        'jenis_lks' => 'required|string|in:LKS Kota,LKS Provinsi,LKS Nasional',
+        'jenis_pelayanan' => 'required|string|in:Anak,Disabilitas,Lanjut Usia',
+      ]);
+
+      // Handle the file upload
+      if ($request->hasFile('foto_lks')) {
+        // Delete the old photo if it exists
+        if ($lks->foto_lks) {
+          // Delete the old file from the public directory
+          $oldFilePath = public_path('img/lks/' . $lks->foto_lks);
+          if (file_exists($oldFilePath)) {
+            unlink($oldFilePath);
+          }
+        }
+
+        // Store the new photo in the public directory
+        $file = $request->file('foto_lks');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('img/lks/'), $filename);
+        $validatedData['foto_lks'] = $filename;
+      }
+
+      // Update the profile with validated data
+      $lks->update($validatedData);
+
+      // Redirect with a success message
+      return redirect()->route('management')->with('success', 'Profile updated successfully.');
     }
 
     /**
@@ -113,11 +157,6 @@ class AdminController extends Controller
   /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
-
   public function destroy_laporan($id)
   {
     $report = Report::findOrFail(base64_decode($id));
@@ -134,6 +173,24 @@ class AdminController extends Controller
     $report->delete();
 
     return redirect()->route('history')->with(['success' => 'Laporan berhasil dihapus!']);
+  }
+
+  public function destroy_lks($id)
+  {
+    $lks = LKS::findOrFail(base64_decode($id));
+
+    // Delete the file from the server
+    if ($lks->foto_lks) {
+      $filePath = public_path('img/lks' . $lks->foto_lks);
+      if (file_exists($filePath)) {
+        unlink($filePath);
+      }
+    }
+
+    // Delete the report from the database
+    $lks->delete();
+
+    return redirect()->route('management')->with(['success' => 'LKS berhasil dihapus!']);
   }
 
 }
