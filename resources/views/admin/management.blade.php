@@ -30,7 +30,7 @@
                                 <td class="px-6 py-4 border-b border-gray-200 bg-white w-40">
                                     <img src="img/lks/{{$l->foto_lks}}" alt="" class="w-24">
                                 </td>
-                                <td class="px-6 py-4 border-b border-gray-200 bg-white">
+                                <td class="px-6 py-4 border-b border-gray-200 bg-white w-screen">
                                     <p class="whitespace-no-wrap">{{$l->nama_lks}}</p>
                                 </td>
                                 <td class="px-6 py-4 border-b border-gray-200 bg-white flex">
