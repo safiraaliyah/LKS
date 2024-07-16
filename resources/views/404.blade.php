@@ -16,6 +16,7 @@
             <a href="/profil/{id}" class="text-gray-200 hover:underline">Profile</a>
             <a href="#" class="text-gray-200 hover:underline">Notification</a>
         </div>
-    </div>
+        </div>
+
 </body>
 </html>

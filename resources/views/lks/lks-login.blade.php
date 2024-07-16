@@ -11,17 +11,14 @@
         <div class="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg max-w-md w-full mx-4 md:mx-auto">
             <div class="flex justify-center mb-4">
                 <img src="img/logo_kota.png" alt="Logo" class="w-24 h-24">
-            </div>
-            <h1 class="text-3xl font-bold text-center mb-6">Log In Admin</h1>
-            @error('role')
-                <span class="text-red-500 text-sm">{{ $message }}</span>
-            @enderror
-            <form class="space-y-4" method="POST" action="/login-admin-post">
+            </div>    
+            <h1 class="text-3xl font-bold text-center mb-6">Log In LKS</h1>
+            <form class="space-y-4" method="POST" action="/login-lks-post">
                 @csrf
                 <div>
                     <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                    <input type="text" name="username" id="username" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-lg" placeholder="Enter your Username">
-                    @error('name')
+                    <input type="text" name="username" id="username" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-lg" placeholder="Enter your username">
+                    @error('username')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>

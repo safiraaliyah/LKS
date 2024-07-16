@@ -12,7 +12,6 @@
         <h1 class="text-2xl font-bold mb-6">Edit Profile</h1>
         <form id="editProfileForm" action="{{ route('updateProfil', $profil->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
-
             <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-4">
                 <label class="md:text-left pr-4 text-gray-700">Upload Foto (.JPG, .SVG, .RAW)</label>
                 <div class="md:col-span-2">
