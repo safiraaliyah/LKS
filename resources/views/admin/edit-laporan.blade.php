@@ -44,7 +44,7 @@
 
       <!-- Buttons -->
       <div class="flex justify-end mt-4">
-        <a href="/profile" class="mr-2 bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400">Batal</a>
+        <a href="/history" class="mr-2 bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400">Batal</a>
         <button type="submit" class="bg-[#08A78B]  text-white px-4 py-2 rounded-lg hover:bg-[#114138]">Simpan</button>
       </div>
     </form>

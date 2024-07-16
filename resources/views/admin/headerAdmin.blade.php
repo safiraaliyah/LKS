@@ -31,7 +31,6 @@
             <button class="rounded-md border-2 border-[#006633] px-6 py-1 font-medium text-white transition-colors hover:bg-[#006633] hover:text-white">Login</button>
           </li>
         </ul>
-                        
       </nav>
     </div>
   </header>

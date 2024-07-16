@@ -2,13 +2,13 @@
     <div class="bg-white">
         <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
             <div class="mr-auto place-self-center lg:col-span-7">
-                <h2 class="max-w-2xl mb-4 text-3xl font-bold tracking-tight leading-none text-blue-900">Selamat Datang di Website Resmi</h2>
+                <h2 class="max-w-2xl mb-4 text-3xl font-bold tracking-tight leading-none text-blue-900">SIMFONI LKS</h2>
                 <h1 class="max-w-2xl mb-4 text-3xl font-extrabold tracking-tight leading-none text-blue-900 md:text-4xl xl:text-5xl">
                     LEMBAGA KESEJAHTERAAN <br> SOSIAL KOTA YOGYAKARTA
                 </h1>
                 <p class="max-w-2xl mb-6 font-light text-black lg:mb-8 md:text-lg lg:text-xl">Lembaga Kesejahteraan Sosial (LKS) adalah organisasi sosial atau perkumpulan sosial melaksanakan penyelenggaraan kesejahteraan sosial yang dibentuk oleh masyarakat. Tujuan pendirian LKS sebagai wujud peran masyarakat dalam penyelenggaraan kesejahteraan sosial.</p>
             </div>
-            <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+            <div class=" lg:mt-0 lg:col-span-5 lg:flex">
                 <img src="img/gambar1.jpeg" alt="mockup">
             </div>
         </div>
