@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LKS;
 use App\Models\Profil;
 use Illuminate\Http\Request;
 
 class ProfilController extends Controller
 {
-    public function show($id)
+    public function show($nama_lks)
     {
-        $profil = Profil::find($id);
-        if ($profil) {
-            return view('profil', compact('profil'));
-        } else {
-            return redirect('/')->with('error', 'Profil tidak ditemukan');
-        }
+      $decodedNamaLks = urldecode($nama_lks);
+
+      $profile = LKS::where('nama_lks', $decodedNamaLks)->first();
+
+      if ($profile) {
+          return view('profile', compact('profile'));
+      } else {
+          return view('404');
+      }
     }
 }
 

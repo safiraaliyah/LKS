@@ -1,14 +1,4 @@
-@include('admin.headerAdmin', ['Management' => 'Management / LKS'])
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Management</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-</head>
-<body class="bg-gray-100">
+@include('components.header', ['History' => 'History / LKS'])
     <div class="max-w-screen-xl mx-auto p-4">
         <div class="bg-white p-8 rounded-lg shadow-lg">
             <div class="flex items-center justify-between pb-6">
@@ -29,16 +19,21 @@
                     <table class="min-w-full leading-normal">
                         <thead>
                             <tr class="bg-emerald-50 text-left text-sm font-semibold uppercase tracking-wider text-black">
-                                <th class="px-6 py-4">Name</th>
+                                <th class="px-6 py-4">Foto</th>
+                                <th class="px-6 py-4">Nama LKS</th>
                                 <th class="px-6 py-4">Operations</th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-700 text-base">
+                        @forelse($lks as $l)
                             <tr>
-                                <td class="px-6 py-4 border-b border-gray-200 bg-white">
-                                    <p class="whitespace-no-wrap">Panti Wreda "Hanna" Yogyakarta</p>
+                                <td class="px-6 py-4 border-b border-gray-200 bg-white w-40">
+                                    <img src="img/lks/{{$l->foto_lks}}" alt="" class="w-24">
                                 </td>
                                 <td class="px-6 py-4 border-b border-gray-200 bg-white">
+                                    <p class="whitespace-no-wrap">{{$l->nama_lks}}</p>
+                                </td>
+                                <td class="px-6 py-4 border-b border-gray-200 bg-white flex">
                                     <a href="#" class="text-gray-600 hover:text-gray-800 mr-2">
                                         <i class="uil uil-edit text-xl"></i>
                                     </a>
@@ -48,7 +43,13 @@
                                 </td>
                                 
                             </tr>
-                        
+                        @empty
+                            <tr>
+                                <td class="text-center">
+                                    Data Belum Ada
+                                </td>
+                            </tr>
+                        @endforelse
                         </tbody>
                     </table>
                 </div>

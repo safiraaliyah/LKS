@@ -18,10 +18,19 @@
       <!-- Periode Selection -->
       <label class="block text-gray-700 font-bold" for="periode">Periode:</label>
       <select id="periode" name="periode" class="block w-full text-gray-700 bg-gray-100 border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-500">
-        <option value="Triwulan 1">Triwulan 1</option>
-        <option value="Triwulan 2">Triwulan 2</option>
-        <option value="Triwulan 3">Triwulan 3</option>
-        <option value="Triwulan 4">Triwulan 4</option>
+        <option value="Triwulan 1" {{ 'Triwulan 1' == $report->periode ? 'selected' : ''  }}>Triwulan 1</option>
+        <option value="Triwulan 2" {{ 'Triwulan 2' == $report->periode ? 'selected' : ''  }}>Triwulan 2</option>
+        <option value="Triwulan 3" {{ 'Triwulan 3' == $report->periode ? 'selected' : ''  }}>Triwulan 3</option>
+        <option value="Triwulan 4" {{ 'Triwulan 4' == $report->periode ? 'selected' : ''  }}>Triwulan 4</option>
+
+      </select>
+
+      <!-- Year Selection -->
+      <label class="block text-gray-700 font-bold" for="periode">Tahun:</label>
+      <select id="periode" name="periode" class="block w-full text-gray-700 bg-gray-100 border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-500">
+        @for($i = 2010; $i <= 2035; $i++)
+        <option value="{{$i}}" {{ $i == $report->year ? 'selected' : ''  }}>{{$i}}</option>
+        @endfor
       </select>
 
       <label class="block text-gray-700 font-bold" for="upload">Upload Laporan:</label>

@@ -6,6 +6,7 @@ use App\Models\LKS;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LKSController extends Controller
 {
@@ -43,8 +44,8 @@ class LKSController extends Controller
     'alamat_lks' => 'required|string',
     'nomor_notaris' => 'required|string|max:255',
     'tanggal_akte_notaris' => 'required|date',
-    'nomor_daftar' => 'required|string|max:255',
-    'tanggal_tanda_daftar' => 'required|date',
+    'kontrak_awal' => 'required|date',
+    'kontrak_akhir' => 'required|date',
     'kontak_pengurus' => 'required|string|max:255',
     'akreditasi_lks' => 'required|string|max:1',
     'jenis_lks' => 'required|string|in:LKS Kota,LKS Provinsi,LKS Nasional',
@@ -87,16 +88,26 @@ class LKSController extends Controller
 
     // Validate the form data
     $validatedData = $request->validate([
-    'periode' => 'required|string|in:Januari,Februari,Maret,April,Mei,Juni,Juli,Agustus,September,Oktober,November,Desember',
-    'laporan' => 'mimes:docx,pdf,xlsx,docs|max:100048',
+      'periode' => 'required|string|in:Triwulan 1,Triwulan 2,Triwulan 3,Triwulan 4',
+      'laporan' => 'mimes:docx,pdf,xlsx,docs|max:100048',
     ]);
+
+    $existingReport = Report::where('periode', $request->periode)
+      ->where('year', DB::raw('YEAR(CURDATE())'))
+      ->where('id_lks', $profile->id)
+      ->first();
 
     // Handle the file upload
     if ($request->hasFile('laporan')) {
       // Delete the old file if it exists
-      if ($profile->laporan) {
+      $oldReport = Report::where('id_lks', $profile->id)
+        ->where('periode', $request->periode)
+        ->where('year', $request->year)
+        ->first();
+
+      if ($oldReport && $oldReport->laporan) {
         // Delete the old file from the public directory
-        $oldFilePath = public_path('laporan/lks/' . $profile->laporan);
+        $oldFilePath = public_path('laporan/lks/' . $oldReport->laporan);
         if (file_exists($oldFilePath)) {
           unlink($oldFilePath);
         }
@@ -109,11 +120,19 @@ class LKSController extends Controller
       $validatedData['laporan'] = $filename;
     }
 
-    Report::create([
-      'id_lks'  => $profile->id,
-      'periode' => $request->periode,
-      'laporan' => $validatedData['laporan'],
-    ]);
+    if ($existingReport) {
+      // Update the existing report
+      $existingReport->laporan = $validatedData['laporan'];
+      $existingReport->save();
+    } else {
+      // Create a new report
+      $newReport = new Report([
+        'id_lks' => $profile->id,
+        'periode' => $request->periode,
+        'laporan' => $validatedData['laporan'],
+      ]);
+      $newReport->save();
+    }
 
     return redirect()->route('profile')->with(['success' => 'Data Berhasil Ditambahkan!']);
   }

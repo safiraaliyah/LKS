@@ -33,10 +33,9 @@
         <h2 class="text-2xl font-bold mb-6">About</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <p class="text-lg"><strong>Nomor & Tanggal Akte Notaris:</strong><br>{{ $profile->nomor_notaris }},
-                    Tanggal: {{ \Carbon\Carbon::parse($profile->tanggal_notaris)->format('d F Y') }}</p>
-                <p class="text-lg"><strong>Nomor & Tanggal Tanda Daftar:</strong><br>{{ $profile->nomor_daftar }},
-                    Tanggal: {{ \Carbon\Carbon::parse($profile->tanggal_daftar)->format('d F Y') }}</p>
+                <p class="text-lg"><strong>Nomor & Tanggal Akte Notaris:</strong><br>{{$profile->nomor_notaris}}, Tanggal: {{ \Carbon\Carbon::parse($profile->tanggal_akte_notaris)->format('d F Y') }}</p>
+                <p class="text-lg"><strong>Tanggal Tanda Daftar:</strong><br>{{ \Carbon\Carbon::parse($profile->kontrak_awal)->format('d F Y') }} - {{ \Carbon\Carbon::parse($profile->kontrak_akhir)->format('d F Y') }}
+                </p>
                 <p class="text-lg"><strong>Akreditasi:</strong><br>{{ $profile->akreditasi_lks }}</p>
             </div>
             <div>

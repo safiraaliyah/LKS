@@ -19,8 +19,8 @@ return new class extends Migration
             $table->longText('alamat_lks')->nullable();
             $table->integer('nomor_notaris')->nullable();
             $table->dateTime('tanggal_akte_notaris');
-            $table->integer('nomor_daftar')->nullable();
-            $table->dateTime('tanggal_tanda_daftar')->nullable();
+            $table->dateTime('kontrak_awal')->nullable();
+            $table->dateTime('kontrak_akhir')->nullable();
             $table->string('kontak_pengurus')->nullable();
             $table->enum('akreditasi_lks', ['A', 'B', 'C'])->nullable();
             $table->enum('jenis_lks', ['LKS Kota', 'LKS Provinsi', 'LKS Nasional'])->nullable();

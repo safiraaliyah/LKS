@@ -14,4 +14,9 @@ class Report extends Model
       'periode',
       'laporan'
     ];
+
+  public function lks()
+  {
+    return $this->belongsTo(LKS::class, 'id_lks');
+  }
 }

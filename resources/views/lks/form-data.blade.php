@@ -33,14 +33,14 @@
       <label class="md:text-left pr-2 text-gray-700">Nomor & Tanggal Akte Notaris</label>
       <div class="md:col-span-2 space-y-2">
         <input type="text" name="nomor_notaris" placeholder="Nomor Notaris" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ $profile->nomor_notaris }}">
-        <input type="datetime" name="tanggal_akte_notaris" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ $profile->tanggal_akte_notaris }}">
+        <input type="datetime-local" name="tanggal_akte_notaris" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ $profile->tanggal_akte_notaris }}">
       </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-4">
       <label class="md:text-left pr-4 text-gray-700">Nomor & Tanggal Tanda Daftar</label>
       <div class="md:col-span-2 space-y-2">
-        <input type="text" name="nomor_daftar" placeholder="Nomor Daftar" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ $profile->nomor_daftar }}">
-        <input type="datetime" name="tanggal_tanda_daftar" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ $profile->tanggal_tanda_daftar }}">
+        <input type="datetime-local" name="kontrak_awal" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ $profile->kontrak_awal }}">
+        <input type="datetime-local" name="kontrak_akhir" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ $profile->kontrak_akhir }}">
       </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-4">

@@ -20,7 +20,7 @@
                 <h2 class="text-left text-3xl font-extrabold tracking-tight text-gray-900 mb-8">Profil LKS</h2>
             </div>
             @foreach ($profiles as $profile)
-            <a href="{{ url('/profil/' . $profile->id) }}" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow mx-auto hover:scale-105">
+            <a href="{{ url('/profile/' . urlencode($profile->nama_lks)) }}" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow mx-auto hover:scale-105">
                 <img class="rounded-t-lg w-full" src="img/lks/{{ $profile->foto_lks }}" alt="{{ $profile->nama_lks }}" />
                 <div class="p-5 text-center">
                     <div class="flex justify-center mb-2">
