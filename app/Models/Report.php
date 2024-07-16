@@ -15,6 +15,9 @@ class Report extends Model
       'laporan'
     ];
 
+  // Enable timestamps
+  public $timestamps = true;
+
   public function lks()
   {
     return $this->belongsTo(LKS::class, 'id_lks');

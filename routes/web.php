@@ -40,10 +40,13 @@
   // Admin
   Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [HomeAdminController::class, 'index']);
-    Route::get('/history', [HistoryController::class, 'index']);
+    Route::get('/history', [HistoryController::class, 'index'])->name('history');
     Route::get('/management', [ManagementController::class, 'index']);
 
     Route::get('/update-laporan/{id}', [AdminController::class, 'edit_laporan']);
+    Route::post('/update-laporan', [AdminController::class, 'update_laporan']);
+
+    Route::delete('/delete-laporan/{id}', [AdminController::class, 'destroy_laporan'])->name('delete-laporan');
   });
 
   Route::middleware(['auth'])->group(function () {
