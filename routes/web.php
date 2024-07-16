@@ -40,9 +40,8 @@
   // Admin
   Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [HomeAdminController::class, 'index']);
-    Route::get('/history', [HistoryController::class, 'index']);
-    Route::get('/management', [ManagementController::class, 'index']);
-
+    Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
+    Route::get('/management', [ManagementController::class, 'index'])->name('management.index');
     Route::get('/update-laporan/{id}', [AdminController::class, 'edit_laporan']);
   });
 

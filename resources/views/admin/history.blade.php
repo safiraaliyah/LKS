@@ -4,15 +4,15 @@
             <div class="flex items-center justify-between pb-6">
                 <h1 class="font-semibold text-gray-700 text-2xl">History</h1>
             </div>
-            <div class="pb-6 flex items-center">
-                <span class="mr-2">Search Name:</span>
-                <div class="relative">
-                    <input type="text" placeholder="Search name" class="w-64 px-4 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-emerald-800 bg-emerald-50">
-                    <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                        <i class="uil uil-search"></i>
-                    </span>
+            <form method="GET" action="{{ route('history.index') }}">
+                <div class="pb-6 flex items-center">
+                    <span class="mr-2">Search Name:</span>
+                    <div class="relative">
+                        <input type="text" name="search" placeholder="Search name" value="{{ $query }}" class="w-64 px-4 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-emerald-800 bg-emerald-50">
+                    </div>
+                    <button type="submit" class="ml-2 px-4 py-2 bg-emerald-800 text-white rounded-md">Search</button>
                 </div>
-            </div>
+            </form>
                        
             <div class="overflow-hidden rounded-lg border">
                 <div class="overflow-x-auto">
@@ -52,12 +52,17 @@
                             </tr>
                             @else
                                 <tr>
-                                    <td class="text-center">
+                                    <td colspan="4" class="text-center border-b border-gray-200 bg-white">
                                         Data Belum Ada
                                     </td>
                                 </tr>
                             @endif
                             @empty
+                                <tr>
+                                    <td colspan="4" class="text-center border-b border-gray-200 bg-white">
+                                        Tidak ada laporan ditemukan
+                                    </td>
+                                </tr>
                             @endforelse
                         
                         </tbody>
@@ -69,4 +74,3 @@
 </body>
 
 </html>
-
