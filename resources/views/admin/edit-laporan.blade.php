@@ -12,9 +12,9 @@
   <!-- Form Section -->
   <div class="my-4 border px-6 py-6 shadow-lg rounded-xl bg-gray-50">
     <!-- Form Upload Laporan -->
-    <form class="flex flex-col gap-4" method="POST" enctype="multipart/form-data" action="/send-data-lks">
+    <form class="flex flex-col gap-4" method="POST" enctype="multipart/form-data" action="/update-data-lks">
       @csrf
-
+      <input type="hidden" name="id" value="{{base64_encode($report->id)}}">
       <!-- Periode Selection -->
       <label class="block text-gray-700 font-bold" for="periode">Periode:</label>
       <select id="periode" name="periode" class="block w-full text-gray-700 bg-gray-100 border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-500">
@@ -26,8 +26,8 @@
       </select>
 
       <!-- Year Selection -->
-      <label class="block text-gray-700 font-bold" for="periode">Tahun:</label>
-      <select id="periode" name="periode" class="block w-full text-gray-700 bg-gray-100 border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-500">
+      <label class="block text-gray-700 font-bold" for="year">Tahun:</label>
+      <select id="year" name="year" class="block w-full text-gray-700 bg-gray-100 border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-blue-500">
         @for($i = 2010; $i <= 2035; $i++)
         <option value="{{$i}}" {{ $i == $report->year ? 'selected' : ''  }}>{{$i}}</option>
         @endfor

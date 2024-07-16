@@ -36,7 +36,11 @@
                                     <p class="whitespace-no-wrap">{{$report->periode}}</p>
                                 </td>
                                 <td class="px-6 py-4 border-b border-gray-200 bg-white">
-                                    <p class="whitespace-no-wrap">{{$report->updated_at}}</p>
+                                    <p class="whitespace-no-wrap">
+                                        {{
+                                            $report->updated_at->format('d M Y, H:i')
+                                        }}
+                                    </p>
                                 </td>
                                 <td class="px-6 py-4 border-b border-gray-200 bg-white">
                                     <a href="laporan/lks/{{ $report->laporan }}" class="text-gray-600 hover:text-gray-800 mr-2" download>
@@ -45,9 +49,13 @@
                                     <a href="/update-laporan/{{ base64_encode($report->id) }}" class="text-gray-600 hover:text-gray-800 mr-2">
                                         <i class="uil uil-edit text-xl"></i>
                                     </a>
-                                    <a href="#" class="text-gray-600 hover:text-gray-800">
-                                        <i class="uil uil-trash-alt text-xl"></i>
-                                    </a>
+                                    <form action="{{ route('delete-laporan', base64_encode($report->id)) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this report?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-gray-600 hover:text-gray-800">
+                                            <i class="uil uil-trash-alt text-xl"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             @else
