@@ -20,7 +20,7 @@
     }
   </style>
 </head>
-<body x-data="{ openProfile: false, openLogin: false, openUser: false }">
+<body x-data="{ openProfile: false, openLogin: false, openUser: false }" class="bg-gray-100">
 <nav class="flex bg-[#08A78B] text-white justify-between py-4 px-8 items-center">
   <a href="/">
     <img src="img/logo_kota.png" alt="logo" class="w-12">
@@ -34,7 +34,7 @@
     @if(Auth::user() && Auth::user()->role == 'lks')
       <li class="relative">
         <button @click="openProfile = !openProfile; openUser = false">Profile <i class="uil uil-angle-down"></i></button>
-        <ul x-show="openProfile" class="absolute z-50 rounded-lg text-black shadow-md flex flex-col gap-2 py-4 px-4 bg-white w-40 top-10 right-0">
+        <ul x-show="openProfile" class="absolute text-center z-50 rounded-lg text-black shadow-md flex flex-col gap-2 py-4 px-4 bg-white w-40 top-10 right-0">
           <li>
             <a href="/profile">Profile LKS</a>
           </li>
@@ -73,11 +73,11 @@
         <a href="/history">History</a>
       </li>
       <li>
-        <a href="">Management</a>
+        <a href="/management">Management</a>
       </li>
-      <li>
+      <li class="relative">
         <button @click="openUser = !openUser" class="rounded-full flex items-center gap-2 bg-white text-black py-2 px-4 font-semibold duration-150 hover:text-gray-700">{{ Auth::user()->name }} <img src="img/icon/user-icon.png" alt=""></button>
-        <ul x-show="openUser" class="absolute z-50 rounded-lg text-black top-[70px] right-0 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
+        <ul x-show="openUser" class="absolute z-50 rounded-lg text-black top-14 right-0 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
           <li class="flex flex-col gap-4">
             <div class="flex gap-2 items-center">
               <img src="img/icon/user-icon.png" alt="">
@@ -96,9 +96,9 @@
     @endif
 
     @if(!Auth::user())
-      <li>
+      <li class="relative">
         <button @click="openLogin = !openLogin; openProfile = false">Login <i class="uil uil-angle-down"></i></button>
-        <ul x-show="openLogin" class="absolute z-50 text-black top-16 -right-4 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
+        <ul x-show="openLogin" class="absolute text-center rounded-lg z-50 text-black top-10 right-0 w-40 shadow-md flex flex-col gap-2 py-4 px-4 bg-white">
           <li>
             <a href="/login-admin">Login Admin</a>
           </li>
